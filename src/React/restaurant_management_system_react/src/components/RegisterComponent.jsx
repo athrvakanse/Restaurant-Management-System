@@ -1,47 +1,59 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; //Added import
+
+
 
 function RegisterComponent() {
+  const navigate = useNavigate(); //Initialized navigate
+
   const [formData, setFormData] = useState({
     fname: '',
     mname: '',
     lname: '',
     email: '',
     password: '',
-    phoneno: '',
-    adharno: '',
-    profilephoto: null,
+    phone_no: '',
+    aadhar_no: '',
+    profile_photo: '',
     gender: '',
     address: '',
-    r_id: ''
+    r_id: { r_id: 2 }
   });
 
   const handleChange = (e) => {
-    const { name, value, type } = e.target;
-    if (type === "file") {
-      setFormData({ ...formData, [name]: e.target.files[0] });
+    const { name, value, type, files } = e.target;
+
+    if (type === 'file' && files.length > 0) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prevData) => ({
+          ...prevData,
+          profile_photo: reader.result, //base64 string
+        }));
+      };
+      reader.readAsDataURL(files[0]);
     } else {
-      setFormData({ ...formData, [name]: value });
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formDetails = new FormData();
-    for (const key in formData) {
-      formDetails.append(key, formData[key]);
-    }
-
     try {
-      const response = await axios.post('http://localhost:8080/user/save', formDetails, {
+      const response = await axios.post('http://localhost:8080/user/save', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          'Content-Type': 'application/json',
+        },
       });
 
       console.log('Registration successful:', response.data);
       alert('Registration successful!');
+      navigate('/login'); // Redirect to login page
     } catch (error) {
       console.error('Registration failed:', error);
       alert('Something went wrong during registration.');
@@ -51,7 +63,7 @@ function RegisterComponent() {
   return (
     <div className="container mt-5">
       <h2>Register</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-md-4 mb-3">
             <label>First Name</label>
@@ -75,15 +87,15 @@ function RegisterComponent() {
           </div>
           <div className="col-md-6 mb-3">
             <label>Phone Number</label>
-            <input type="text" className="form-control" name="phoneno" onChange={handleChange} required />
+            <input type="text" className="form-control" name="phone_no" onChange={handleChange} required />
           </div>
           <div className="col-md-6 mb-3">
             <label>Aadhar Number</label>
-            <input type="text" className="form-control" name="adharno" onChange={handleChange} required />
+            <input type="text" className="form-control" name="aadhar_no" onChange={handleChange} required />
           </div>
           <div className="col-md-6 mb-3">
             <label>Profile Photo</label>
-            <input type="file" className="form-control" name="profilephoto" onChange={handleChange} />
+            <input type="file" className="form-control" name="profile_photo" onChange={handleChange} />
           </div>
           <div className="col-md-6 mb-3">
             <label>Gender</label>

@@ -1,8 +1,9 @@
-
 import React, { useReducer } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userAction } from '../store/userSlice';
-import axios from 'axios'; // <-- Import axios
+import { useNavigate } from 'react-router-dom'; 
+import rms from '../assets/rms.jpeg';
+import axios from 'axios';
 
 const initialState = {
   email: '',
@@ -28,35 +29,51 @@ function reducer(state, action) {
 function LoginComponent() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const storeDispatch = useDispatch();
-  const loggedInUser = useSelector((store) => store.loggedInUser);
-  console.log(loggedInUser);
+  const navigate = useNavigate();
+const handleLogin = async (e) => {
+  e.preventDefault();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  try {
+    const response = await axios.post('http://localhost:8080/user/login', {
+      email: state.email,
+      password: state.password
+    });
 
-    try {
-      const response = await axios.post('http://localhost:8080/user/login', {
-        email: state.email,
-        password: state.password
-      });
+    const data = response.data;
 
-      const data = response.data;
-
+    if (data) {
       storeDispatch(userAction.loadUser(data));
+      dispatch({ type: 'SET_MESSAGE', payload: 'Login successful!' });
 
-      if (data) {
-        dispatch({ type: 'SET_MESSAGE', payload: 'Login successful!' });
-      } else {
-        dispatch({ type: 'SET_MESSAGE', payload: 'Invalid email or password.' });
+      // Role-Based Redirection
+      switch (data.r_id.r_name) {
+        case 'Customer':
+          navigate('/customer/home');
+          break;
+        case 'Manager':
+          navigate('/manager/dashboard');
+          break;
+        case 'Waiter':
+          navigate('/waiter/dashboard');
+          break;
+        case 'Kitchen Staff':
+          navigate('/kitchen/orders');
+          break;
+        default:
+          navigate('/unauthorized');
       }
-    } catch (error) {
-      console.error('Error during login:', error);
-      dispatch({
-        type: 'SET_MESSAGE',
-        payload: 'Something went wrong. Try again.'
-      });
+    } else {
+      dispatch({ type: 'SET_MESSAGE', payload: 'Invalid email or password.' });
     }
-  };
+  } catch (error) {
+    console.error('Error during login:', error);
+    dispatch({
+      type: 'SET_MESSAGE',
+      payload: 'Something went wrong. Try again.'
+    });
+  }
+};
+
 
   return (
     <div className="container mt-5">
