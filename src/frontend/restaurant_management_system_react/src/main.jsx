@@ -36,6 +36,12 @@ import ManagerReportComponent from './components/manager/ManagerReportComponent.
 import WhatToCookComponent from './components/kitchenstaff/WhatToCookComponent.jsx';
 import TrackOrderProgressComponent from './components/kitchenstaff/TrackOrderProgressComponent.jsx';
 import UpdateOrderStatusComponent from './components/kitchenstaff/UpdateOrderStatusComponent.jsx';
+import ViewDishesComponent from './components/customer/ViewDishesComponent.jsx';
+import ViewReservationsComponent from './components/customer/ViewReservationsComponent.jsx';
+import CreateReservationComponent from './components/customer/CreateReservationComponent.jsx';
+import UpdateReservationComponent from './components/customer/UpdateReservationComponent.jsx';
+import TrackOrderComponent from './components/customer/TrackOrderComponent.jsx';
+
 
 
 const router = createBrowserRouter([
@@ -93,7 +99,18 @@ const router = createBrowserRouter([
             { path: 'track-progress', element: <TrackOrderProgressComponent /> },
             {path: 'update-status', element: <UpdateOrderStatusComponent /> } 
         ]
-      },
+      },{
+    path: '/customer/home',
+    element: <CustomerHome />,
+    children: [
+      { path: 'viewdishes', element: <ViewDishesComponent /> },
+      { path: 'reservations/view', element: <ViewReservationsComponent /> },
+      { path: 'reservations/create', element: <CreateReservationComponent /> },
+      { path: 'reservations/update/:id/:userId/:tableId', element: <UpdateReservationComponent /> }
+     ,{
+        path: "orders/trackuser/:userId",
+        element: <TrackOrderComponent />,
+      }]},
       {
         path: '*',
         element: <h2 className="text-center mt-5">404 Page Not Found</h2>,
