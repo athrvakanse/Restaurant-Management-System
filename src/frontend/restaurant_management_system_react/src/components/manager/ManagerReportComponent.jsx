@@ -10,7 +10,7 @@ function ManagerReportComponent() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:8084/api3/dashboard/summary')
+    axios.get('http://localhost:8080/api3/dashboard/summary')
       .then(res => setSummary(res.data))
       .catch(err => console.error(err));
   }, []);

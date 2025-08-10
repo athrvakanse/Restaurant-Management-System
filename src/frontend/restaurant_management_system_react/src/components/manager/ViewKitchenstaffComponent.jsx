@@ -13,7 +13,7 @@ function ViewKitchenstaffComponent() {
 
   const fetchKitchenStaff = async () => {
     try {
-      const response = await axios.get('http://localhost:8084/api3/users/kitchenstaff');
+      const response = await axios.get('http://localhost:8080/api3/users/kitchenstaff');
       setKitchenStaff(response.data);
     } catch (error) {
       console.error('Error fetching kitchen staff:', error);
@@ -22,7 +22,7 @@ function ViewKitchenstaffComponent() {
 
   const fetchRoles = async () => {
     try {
-      const response = await axios.get('http://localhost:8084/api3/roles/all');
+      const response = await axios.get('http://localhost:8080/api3/roles/all');
       setRoles(response.data);
     } catch (error) {
       console.error('Error fetching roles:', error);
@@ -51,7 +51,7 @@ function ViewKitchenstaffComponent() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:8084/api3/users/update/${editingStaff.u_id}`, editingStaff);
+      await axios.put(`http://localhost:8080/api3/users/update/${editingStaff.u_id}`, editingStaff);
       setEditingStaff(null);
       fetchKitchenStaff();
     } catch (error) {
@@ -62,7 +62,7 @@ function ViewKitchenstaffComponent() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this kitchen staff member?")) {
       try {
-        await axios.delete(`http://localhost:8084/api3/users/delete/${id}`);
+        await axios.delete(`http://localhost:8080/api3/users/delete/${id}`);
         fetchKitchenStaff();
       } catch (error) {
         console.error("Error deleting kitchen staff:", error);

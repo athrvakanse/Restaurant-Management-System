@@ -16,7 +16,7 @@ function DeleteDishComponent() {
 
   const deleteDishById = async (id) => {
     try {
-      await axios.delete(`http://localhost:8084/api3/dishes/delete/${id}`);
+      await axios.delete(`http://localhost:8080/api3/dishes/delete/${id}`);
       alert('Dish deleted successfully.');
     } catch (error) {
       console.error('Error deleting dish:', error);

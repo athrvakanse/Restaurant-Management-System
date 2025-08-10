@@ -19,7 +19,7 @@ function AddDishComponent() {
 
   const fetchSubcategories = async () => {
     try {
-      const response = await axios.get('http://localhost:8084/api3/subcategories/all');
+      const response = await axios.get('http://localhost:8080/api3/subcategories/all');
       setSubcategories(response.data);
     } catch (error) {
       console.error('Error fetching subcategories:', error);

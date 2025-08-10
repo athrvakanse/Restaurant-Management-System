@@ -20,7 +20,7 @@ import com.example.demo.entities.Order;
 import com.example.demo.services.OrderService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+//@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api2/orders")
 public class OrderController {
 	@Autowired

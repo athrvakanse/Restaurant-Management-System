@@ -17,7 +17,7 @@ import com.example.demo.entities.Dish;
 import com.example.demo.services.DishService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+//@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api2/dishes")
 public class DishController {
 	

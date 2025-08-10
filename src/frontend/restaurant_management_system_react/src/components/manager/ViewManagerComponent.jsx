@@ -13,7 +13,7 @@ function ViewManagerComponent() {
 
   const fetchManagers = async () => {
     try {
-      const response = await axios.get('http://localhost:8084/api3/users/managers');
+      const response = await axios.get('http://localhost:8080/api3/users/managers');
       setManagers(response.data);
     } catch (error) {
       console.error('Error fetching managers:', error);
@@ -22,7 +22,7 @@ function ViewManagerComponent() {
 
   const fetchRoles = async () => {
     try {
-      const response = await axios.get('http://localhost:8084/api3/roles/all');
+      const response = await axios.get('http://localhost:8080/api3/roles/all');
       setRoles(response.data);
     } catch (error) {
       console.error('Error fetching roles:', error);
@@ -51,7 +51,7 @@ function ViewManagerComponent() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:8084/api3/users/update/${editingManager.u_id}`, editingManager);
+      await axios.put(`http://localhost:8080/api3/users/update/${editingManager.u_id}`, editingManager);
       setEditingManager(null);
       fetchManagers();
     } catch (error) {
@@ -62,7 +62,7 @@ function ViewManagerComponent() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this manager?")) {
       try {
-        await axios.delete(`http://localhost:8084/api3/users/delete/${id}`);
+        await axios.delete(`http://localhost:8080/api3/users/delete/${id}`);
         fetchManagers();
       } catch (error) {
         console.error("Error deleting manager:", error);
