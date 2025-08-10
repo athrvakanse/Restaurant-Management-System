@@ -1,26 +1,23 @@
 // File: src/components/customer/ViewDishesComponent.jsx
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 function ViewDishesComponent() {
-    const loggedInUser=useSelector(store=>store.loggedInUser)
-    console.log(loggedInUser)
+  const loggedInUser = useSelector((store) => store.loggedInUser);
   const [dishes, setDishes] = useState([]);
   const [selectedDishes, setSelectedDishes] = useState({});
   const [payMode, setPayMode] = useState('CASH');
 
-  const user = useSelector((state) => state.loggedInUser.user);
-  const userId = user?.id;
-
+  // Load dishes on mount
   useEffect(() => {
-    fetch("http://localhost:8081/api/menu")
+    fetch("http://localhost:8080/api/menu")
       .then((res) => res.json())
       .then((data) => setDishes(data))
       .catch((err) => console.error("Failed to load dishes", err));
   }, []);
 
+  // Handle quantity change for each dish
   const handleQtyChange = (d_id, qty) => {
     const quantity = parseInt(qty);
     if (quantity > 0) {
@@ -35,13 +32,15 @@ function ViewDishesComponent() {
     }
   };
 
+  // Place order
   const handlePlaceOrder = () => {
     const dishlist = Object.values(selectedDishes);
 
-    // if (!userId) {
-    //   alert("You must be logged in to place an order.");
-    //   return;
-    // }
+    // ✅ Fixed: Check for u_id instead of id
+    if (!loggedInUser?.u_id) {
+      alert("You must be logged in to place an order.");
+      return;
+    }
 
     if (dishlist.length === 0) {
       alert("Please select at least one dish with quantity.");
@@ -54,15 +53,15 @@ function ViewDishesComponent() {
     }, 0);
 
     const orderInfo = {
-      uid: loggedInUser.u_id,
+      u_id: loggedInUser.u_id, // ✅ match backend expectation
       amount: totalAmount,
       pay_mode: payMode,
       dishlist: dishlist
     };
 
-    console.log("Order payload: ", orderInfo); // for debugging
+    console.log("Order payload: ", orderInfo);
 
-    axios.post("http://localhost:8081/api/orders/placeorder", orderInfo)
+    axios.post("http://localhost:8080/api/orders/placeorder", orderInfo)
       .then((res) => {
         alert("✅ Order placed successfully! Order ID: " + res.data.o_id);
         setSelectedDishes({});
@@ -102,7 +101,6 @@ function ViewDishesComponent() {
                   value={selectedDishes[dish.d_id]?.qty || ''}
                 />
               </td>
-              <td><button onClick={handlePlaceOrder}>Place Order</button></td>
             </tr>
           ))}
         </tbody>

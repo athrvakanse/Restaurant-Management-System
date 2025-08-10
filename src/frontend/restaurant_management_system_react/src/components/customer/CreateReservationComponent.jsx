@@ -35,7 +35,7 @@ const user = useSelector((state) => state.loggedInUser);
             return;
         }
 
-        const url = `http://localhost:8081/api/reservations/create/${user.u_id}/${tableId}`;
+        const url = `http://localhost:8080/api/reservations/create/${user.u_id}/${tableId}`;
         const requestBody = {
             seatCount: parseInt(seatCount),
             date,
@@ -122,5 +122,4 @@ const user = useSelector((state) => state.loggedInUser);
         </div>
     );
 }
-
 export default CreateReservationComponent;

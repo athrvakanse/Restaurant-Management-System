@@ -20,7 +20,7 @@ function EditSubcategoryComponent() {
 
   const fetchSubcategoryById = async () => {
     try {
-      const response = await axios.get(`http://localhost:8084/api3/subcategories/getbyid/${id}`);
+      const response = await axios.get(`http://localhost:8080/api3/subcategories/getbyid/${id}`);
       setSubCategory({
         s_name: response.data.s_name,
         c_id: response.data.c_id.c_id // nested c_id
@@ -32,7 +32,7 @@ function EditSubcategoryComponent() {
 
   const fetchAllCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:8084/api3/categories/all');
+      const response = await axios.get('http://localhost:8080/api3/categories/all');
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -52,7 +52,7 @@ function EditSubcategoryComponent() {
     };
 
     try {
-      await axios.put(`http://localhost:8084/api3/subcategories/update/${id}`, payload);
+      await axios.put(`http://localhost:8080/api3/subcategories/update/${id}`, payload);
       alert('Subcategory updated successfully!');
       navigate('/manager/dashboard/subcategory/view');
     } catch (error) {

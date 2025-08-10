@@ -393,7 +393,7 @@ function RegisterComponent() {
     }
 
     try {
-      await axios.post('http://localhost:8082/api1/user/save', formData, {
+      await axios.post('http://localhost:8080/api1/user/save', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
