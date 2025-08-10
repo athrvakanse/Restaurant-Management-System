@@ -52,4 +52,8 @@ public class DishController {
 	    }
 	
 	
+	    @GetMapping("/subcategory/{subCategoryId}")
+	    public List<Dish> getDishesBySubcategory(@PathVariable int subCategoryId) {
+	        return dserv.getDishesBySubcategoryId(subCategoryId);
+	    }
 }

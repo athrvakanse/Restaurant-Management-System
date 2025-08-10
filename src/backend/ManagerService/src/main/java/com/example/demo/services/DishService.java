@@ -46,5 +46,9 @@ public class DishService {
         drepo.deleteById(id);
     }
 	
+    public List<Dish> getDishesBySubcategoryId(int subCategoryId) {
+        return drepo.findBySubcategoryId(subCategoryId);
+    }
+
 
 }
