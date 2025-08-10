@@ -42,7 +42,7 @@ function LoginComponent() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8082/api1/user/login', {
+      const response = await axios.post('http://localhost:8080/api1/user/login', {
         email: state.email,
         password: state.password
       });
@@ -87,7 +87,7 @@ function LoginComponent() {
 
   const handleForgotPassword = async () => {
     try {
-      const response = await axios.post('http://localhost:8082/api1/user/forgot-password', {
+      const response = await axios.post('http://localhost:8080/api1/user/forgot-password', {
         email: state.forgotEmail
       });
 

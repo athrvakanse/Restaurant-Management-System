@@ -12,7 +12,7 @@ function ViewCategoryComponent() {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:8084/api3/categories/all');
+      const response = await axios.get('http://localhost:8080/api3/categories/all');
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
