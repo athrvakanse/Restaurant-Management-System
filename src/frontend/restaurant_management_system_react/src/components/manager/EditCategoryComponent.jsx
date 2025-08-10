@@ -15,7 +15,7 @@ function EditCategoryComponent() {
 
   const fetchCategoryById = async () => {
     try {
-      const response = await axios.get(`http://localhost:8084/api3/categories/getbyid/${id}`);
+      const response = await axios.get(`http://localhost:8080/api3/categories/getbyid/${id}`);
       setFormData(response.data);
     } catch (error) {
       console.error('Error fetching category:', error);
@@ -29,7 +29,7 @@ function EditCategoryComponent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8084/api3/categories/update/${id}`, formData);
+      await axios.put(`http://localhost:8080/api3/categories/update/${id}`, formData);
       navigate('/manager/dashboard/category/view');
     } catch (error) {
       console.error('Error updating category:', error);

@@ -12,7 +12,7 @@ function ViewRoleComponent() {
 
   const fetchRoles = async () => {
     try {
-      const response = await axios.get('http://localhost:8084/api3/roles/all');
+      const response = await axios.get('http://localhost:8080/api3/roles/all');
       setRoles(response.data);
     } catch (error) {
       console.error('Error fetching roles:', error);
@@ -28,7 +28,7 @@ function ViewRoleComponent() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:8084/api3/roles/delete/${roleId}`);
+      await axios.delete(`http://localhost:8080/api3/roles/delete/${roleId}`);
       fetchRoles(); // Refresh the list after deletion
     } catch (error) {
       console.error('Error deleting role:', error);

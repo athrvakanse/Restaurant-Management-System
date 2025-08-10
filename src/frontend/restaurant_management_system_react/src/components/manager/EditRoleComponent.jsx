@@ -14,7 +14,7 @@ function EditRoleComponent() {
 
   const fetchRoleById = async () => {
     try {
-      const response = await axios.get(`http://localhost:8084/api3/roles/getbyid/${id}`);
+      const response = await axios.get(`http://localhost:8080/api3/roles/getbyid/${id}`);
       setRole(response.data);
     } catch (error) {
       console.error('Error fetching role by ID:', error);
@@ -28,7 +28,7 @@ function EditRoleComponent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8084/api3/roles/update/${id}`, role);
+      await axios.put(`http://localhost:8080/api3/roles/update/${id}`, role);
       navigate('/manager/dashboard/role/view');
     } catch (error) {
       console.error('Error updating role:', error);

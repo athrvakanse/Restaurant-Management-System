@@ -13,7 +13,7 @@ function ViewCustomerComponent() {
 
   const fetchCustomers = async () => {
     try {
-      const response = await axios.get("http://localhost:8084/api3/users/customers");
+      const response = await axios.get("http://localhost:8080/api3/users/customers");
       setCustomers(response.data);
     } catch (error) {
       console.error("Error fetching customers:", error);
@@ -22,7 +22,7 @@ function ViewCustomerComponent() {
 
   const fetchRoles = async () => {
     try {
-      const response = await axios.get("http://localhost:8084/api3/roles/all");
+      const response = await axios.get("http://localhost:8080/api3/roles/all");
       setRoles(response.data);
     } catch (error) {
       console.error("Error fetching roles:", error);
@@ -31,7 +31,7 @@ function ViewCustomerComponent() {
 
   const handleEditClick = async (u_id) => {
     try {
-      const response = await axios.get(`http://localhost:8084/api3/users/getbyid/${u_id}`);
+      const response = await axios.get(`http://localhost:8080/api3/users/getbyid/${u_id}`);
       setEditingCustomer(response.data);
     } catch (error) {
       console.error("Error fetching customer by ID:", error);
@@ -43,7 +43,7 @@ function ViewCustomerComponent() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:8084/api3/users/delete/${u_id}`);
+      await axios.delete(`http://localhost:8080/api3/users/delete/${u_id}`);
       alert("Customer deleted successfully.");
       fetchCustomers();
     } catch (error) {
@@ -68,7 +68,7 @@ function ViewCustomerComponent() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:8084/api3/users/update/${editingCustomer.u_id}`, editingCustomer);
+      await axios.put(`http://localhost:8080/api3/users/update/${editingCustomer.u_id}`, editingCustomer);
       alert("Customer updated successfully.");
       setEditingCustomer(null);
       fetchCustomers();

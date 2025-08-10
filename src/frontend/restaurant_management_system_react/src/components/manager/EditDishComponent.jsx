@@ -19,8 +19,8 @@ function EditDishComponent() {
       try {
         // Fetch subcategories and dish by ID in parallel
         const [subsResponse, dishResponse] = await Promise.all([
-          axios.get('http://localhost:8084/api3/subcategories/all'),
-          axios.get(`http://localhost:8084/api3/dishes/getbyid/${d_id}`)
+          axios.get('http://localhost:8080/api3/subcategories/all'),
+          axios.get(`http://localhost:8080/api3/dishes/getbyid/${d_id}`)
         ]);
 
         // Set subcategories
@@ -64,7 +64,7 @@ function EditDishComponent() {
     };
 
     try {
-      await axios.put(`http://localhost:8084/api3/dishes/update/${d_id}`, updatedDish);
+      await axios.put(`http://localhost:8080/api3/dishes/update/${d_id}`, updatedDish);
       alert("Dish updated successfully");
       navigate('/manager/dashboard/dish/view');
     } catch (error) {

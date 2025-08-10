@@ -11,7 +11,7 @@ function ViewDishComponent() {
 
   const fetchDishes = async () => {
     try {
-      const response = await axios.get('http://localhost:8084/api3/dishes/all');
+      const response = await axios.get('http://localhost:8080/api3/dishes/all');
       setDishes(response.data);
     } catch (error) {
       console.error('Error fetching dishes:', error);

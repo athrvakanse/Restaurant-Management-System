@@ -17,7 +17,7 @@ import com.example.demo.entities.OrderDetail;
 import com.example.demo.services.OrderDetailService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+//@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api2/orderdetails")
 public class OrderDetailController {
 	

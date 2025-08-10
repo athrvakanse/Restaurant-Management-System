@@ -16,7 +16,7 @@ function CustomerHome() {
       if (!user) return; // If no logged-in user, do nothing
       try {
         // Fetch orders for the logged-in user using user ID
-        const response = await axios.get(`http://localhost:8081/api/orders/user/${user.u_id}`);
+        const response = await axios.get(`http://localhost:8080/api/orders/user/${user.u_id}`);
         setOrders(response.data); // Store the fetched orders in state
         setLoading(false); // Stop loading once orders are fetched
       } catch (error) {

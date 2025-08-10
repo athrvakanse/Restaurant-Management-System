@@ -9,7 +9,7 @@ function UpdateOrderStatusComponent() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:8083/api2/orders/all");
+        const response = await axios.get("http://localhost:8080/api2/orders/all");
         setOrders(response.data);
       } catch (error) {
         console.error("Error fetching orders:", error);
@@ -28,14 +28,14 @@ function UpdateOrderStatusComponent() {
   const handleUpdateStatus = async (orderId) => {
     try {
       const newStatus = statusUpdates[orderId];
-      await axios.put(`http://localhost:8083/api2/orders/update/${orderId}`, {
+      await axios.put(`http://localhost:8080/api2/orders/update/${orderId}`, {
         status: newStatus
       });
 
       alert("Order status updated successfully");
 
       // Optional: refresh orders
-      const refreshed = await axios.get("http://localhost:8083/api2/orders/all");
+      const refreshed = await axios.get("http://localhost:8080/api2/orders/all");
       setOrders(refreshed.data);
       setStatusUpdates(prev => ({ ...prev, [orderId]: "" }));
     } catch (error) {

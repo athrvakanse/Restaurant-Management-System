@@ -10,7 +10,7 @@ function AddSubcategoryComponent() {
 
   useEffect(() => {
     // Fetch all categories to populate dropdown
-    axios.get('http://localhost:8084/api3/categories/all')
+    axios.get('http://localhost:8080/api3/categories/all')
       .then(response => {
         setCategories(response.data);
       })
@@ -30,7 +30,7 @@ function AddSubcategoryComponent() {
     };
 
     try {
-      await axios.post('http://localhost:8084/api3/subcategories/save', newSubcategory);
+      await axios.post('http://localhost:8080/api3/subcategories/save', newSubcategory);
       alert('Subcategory added successfully!');
       navigate('/manager/dashboard/subcategory/view');
     } catch (error) {

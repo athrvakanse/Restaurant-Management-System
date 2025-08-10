@@ -14,7 +14,7 @@ function AddCategoryComponent() {
         c_name: c_name
       };
 
-      await axios.post('http://localhost:8084/api3/categories/save', categoryData);
+      await axios.post('http://localhost:8080/api3/categories/save', categoryData);
       alert('Category added successfully');
       navigate('/manager/dashboard/category/view'); // Redirect back to category list
     } catch (error) {

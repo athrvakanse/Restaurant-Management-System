@@ -15,7 +15,7 @@ function DeleteCategoryComponent() {
       }
 
       try {
-        await axios.delete(`http://localhost:8084/api3/categories/delete/${id}`);
+        await axios.delete(`http://localhost:8080/api3/categories/delete/${id}`);
         alert('Category deleted successfully.');
         navigate('/manager/dashboard/category/view');
       } catch (error) {

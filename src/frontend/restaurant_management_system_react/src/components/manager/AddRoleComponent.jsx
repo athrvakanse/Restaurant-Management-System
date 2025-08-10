@@ -10,7 +10,7 @@ function AddRoleComponent() {
     e.preventDefault();
     try {
       const role = { r_name: roleName };
-      await axios.post('http://localhost:8084/api3/roles/save', role);
+      await axios.post('http://localhost:8080/api3/roles/save', role);
       navigate('/manager/dashboard/role/view');
     } catch (error) {
       console.error('Error adding role:', error);

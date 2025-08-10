@@ -20,7 +20,7 @@ import com.example.demo.entities.LoginCheck;
 import com.example.demo.entities.User;
 import com.example.demo.services.UserService;
 
-@CrossOrigin(origins = "http://localhost:5174")
+//@CrossOrigin(origins = "http://localhost:5174")
 @RestController
 @RequestMapping("/api1/user")
 public class UserController {

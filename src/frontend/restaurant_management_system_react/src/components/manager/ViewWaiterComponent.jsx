@@ -13,7 +13,7 @@ function ViewWaiterComponent() {
 
   const fetchWaiters = async () => {
     try {
-      const response = await axios.get('http://localhost:8084/api3/users/waiters');
+      const response = await axios.get('http://localhost:8080/api3/users/waiters');
       setWaiters(response.data);
     } catch (error) {
       console.error('Error fetching waiters:', error);
@@ -22,7 +22,7 @@ function ViewWaiterComponent() {
 
   const fetchRoles = async () => {
     try {
-      const response = await axios.get('http://localhost:8084/api3/roles/all');
+      const response = await axios.get('http://localhost:8080/api3/roles/all');
       setRoles(response.data);
     } catch (error) {
       console.error('Error fetching roles:', error);
@@ -51,7 +51,7 @@ function ViewWaiterComponent() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:8084/api3/users/update/${editingWaiter.u_id}`, editingWaiter);
+      await axios.put(`http://localhost:8080/api3/users/update/${editingWaiter.u_id}`, editingWaiter);
       setEditingWaiter(null);
       fetchWaiters();
     } catch (error) {
@@ -62,7 +62,7 @@ function ViewWaiterComponent() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this waiter?")) {
       try {
-        await axios.delete(`http://localhost:8084/api3/users/delete/${id}`);
+        await axios.delete(`http://localhost:8080/api3/users/delete/${id}`);
         fetchWaiters();
       } catch (error) {
         console.error("Error deleting waiter:", error);
