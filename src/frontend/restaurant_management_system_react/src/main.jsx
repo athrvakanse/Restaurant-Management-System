@@ -19,15 +19,18 @@ import ViewCategoryComponent from './components/manager/ViewCategoryComponent.js
 import AddCategoryComponent from './components/manager/AddCategoryComponent.jsx';
 import EditCategoryComponent from './components/manager/EditCategoryComponent.jsx';
 import DeleteCategoryComponent from './components/manager/DeleteCategoryComponet.jsx';
+
+
 import ViewSubcategoryComponent from './components/manager/ViewSubcategoryComponent.jsx';
 import EditSubcategoryComponent from './components/manager/EditSubcategoryComponent.jsx';
-import DeleteSubcategoryComponent from './components/manager/DeleteSubcategoryComponent.jsx';
+import DeleteSubcategoryComponent from './components/manager/DeleteSubcategoryComponent.jsx'
+import AddSubcategoryComponent from './components/manager/AddSubcategoryComponent.jsx';
 import ViewDishComponent from './components/manager/ViewDishComponent.jsx';
 import AddDishComponent from './components/manager/AddDishComponent.jsx';
 import EditDishComponent from './components/manager/EditDishComponent.jsx';
-import DeleteDishComponent from './components/manager/DeleteDishComponent.jsx';
+
 import KitchenstaffDashboard from './components/kitchenstaff/KitchenstaffDashboard.jsx';
-import AddSubcategoryComponent from './components/manager/AddSubcategoryComponent.jsx';
+
 import ViewCustmerComponent from './components/manager/ViewCustomerComponent.jsx';
 import ViewWaiterComponent from './components/manager/ViewWaiterComponent.jsx';
 import ViewKitchenstaffComponent from'./components/manager/ViewKitchenstaffComponent.jsx';
@@ -71,17 +74,27 @@ const router = createBrowserRouter([
           { path: 'category/edit/:id', element: <EditCategoryComponent /> },
           { path: 'category/delete/:id', element: <DeleteCategoryComponent /> },
 
-          { path: 'subcategory/view', element: <ViewSubcategoryComponent /> },
-          { path: 'subcategory/add', element: <AddSubcategoryComponent /> },
-          { path: 'subcategory/edit/:id', element: <EditSubcategoryComponent /> },
-          { path: 'subcategory/delete/:id', element: <DeleteSubcategoryComponent /> },
-          { path: 'subcategory/view/:categoryId', element: <ViewSubcategoryComponent /> },
+          // { path: 'subcategory/view', element: <ViewSubcategoryComponent /> },
+          // { path: 'subcategory/add', element: <AddSubcategoryComponent /> },
+          // { path: 'subcategory/edit/:id', element: <EditSubcategoryComponent /> },
+          // { path: 'subcategory/delete/:id', element: <DeleteSubcategoryComponent /> },
+          // { path: 'subcategory/view/:categoryId', element: <ViewSubcategoryComponent /> },
 
-          { path: 'dish/view', element: <ViewDishComponent /> },
-          { path: 'dish/add', element: <AddDishComponent /> },
+          // { path: 'dish/view', element: <ViewDishComponent /> },
+          // { path: 'dish/add', element: <AddDishComponent /> },
+          // { path: 'dish/edit/:d_id', element: <EditDishComponent /> },
+          // { path: 'dish/delete/:d_id', element: <DeleteDishComponent /> },
+          // { path: 'dishes/view/:s_id', element: <ViewDishComponent /> },
+
+ { path: "add-subcategory/:categoryId", element: <AddSubcategoryComponent /> },
+          {path: "edit-subcategory/:id", element:<EditSubcategoryComponent /> },
+          {path: "delete-subcategory/:id", element:<DeleteSubcategoryComponent /> },
+          {path: 'subcategory/view/:categoryId', element: <ViewSubcategoryComponent /> },
+
+          { path: 'view-dishes/:subcategoryId', element: <ViewDishComponent /> },
           { path: 'dish/edit/:d_id', element: <EditDishComponent /> },
-          { path: 'dish/delete/:d_id', element: <DeleteDishComponent /> },
-          { path: 'dishes/view/:s_id', element: <ViewDishComponent /> },
+          { path: 'dish/add/:subcategoryId', element: <AddDishComponent /> },
+
 
            { path: 'users/managers', element: <ViewManagerComponent /> },
           { path: 'users/customers', element: <ViewCustmerComponent /> },
