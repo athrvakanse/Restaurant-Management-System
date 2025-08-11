@@ -143,7 +143,7 @@ public class Orderservice {
 
     @Transactional
     public Order placeOrder(OrderInfo orderInfo) {
-        User user = userRepo.findById(orderInfo.getUid())
+        User user = userRepo.findById(orderInfo.getU_id())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Order order = new Order();
@@ -167,7 +167,7 @@ public class Orderservice {
             detail.setDish(dish);
             detail.setQty(dummy.getQty());
             detail.setOrder(savedOrder);
-            detail.setUser(user);
+//            detail.setUser(user);
 
             orderDetailRepo.save(detail);
             detailList.add(detail);

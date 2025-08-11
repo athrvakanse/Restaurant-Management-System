@@ -27,9 +27,10 @@ public class DineTable {
 
     @Column(nullable = false)
     int capacity;
+    
+    @Column(name = "availability_status", nullable = false) // ✅ fixed spelling
+    private String availability_status;
 
-    @Column(name = "availablity_status", nullable = false)
-    private String availabilityStatus;
     
     @OneToMany(mappedBy = "dineTable", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Reservation> reservations;

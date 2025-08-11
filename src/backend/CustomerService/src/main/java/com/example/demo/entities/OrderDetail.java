@@ -31,7 +31,7 @@ public class OrderDetail {
     
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "o_id", nullable = false)
     private Order order;
 
 
@@ -41,9 +41,9 @@ public class OrderDetail {
     @JoinColumn(name = "d_id")
     private Dish dish;
 
-    @ManyToOne
-    @JoinColumn(name = "u_id")
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "u_id")
+//    private User user;
 
     // Getters & Setters
 }

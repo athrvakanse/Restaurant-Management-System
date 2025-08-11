@@ -30,14 +30,11 @@ import lombok.extern.java.Log;
 @AllArgsConstructor
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "u_id")
-    int id;
-    
-    @Column(nullable = false, unique = true)
-    String username;
-
+	 @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = "u_id")  // ✅ matches database
+	    private int id;
+ 
     @Column(nullable = false, unique = true)
     String password;
     
@@ -76,9 +73,9 @@ public class User {
     @JsonIgnore
     List<Reservation> reservations;
     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<OrderDetail> orderDetails;
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    @JsonIgnore
+//    private List<OrderDetail> orderDetails;
     
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 //    private List<Order> orders;
