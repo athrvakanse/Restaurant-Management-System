@@ -14,7 +14,7 @@ import com.example.demo.service.DishService;
 
 @RestController
 @RequestMapping("/api/menu")
-@CrossOrigin(origins = "http://localhost:5174")
+//@CrossOrigin(origins = "http://localhost:5174")
 public class DishController {
 	
 	@Autowired
