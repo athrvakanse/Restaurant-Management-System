@@ -45,7 +45,11 @@ function App() {
     //         <Route path="/register" element={<RegisterComponent />} />
     //         <Route path="/customer/home" element={<CustomerHome />} />
     //         <Route path="/manager/dashboard" element={<ManagerDashboard />} />
-    //         <Route path="/waiter/dashboard" element={<WaiterDashboard />} />
+               //<Route path="/waiter" element={<Waiter/>} />
+               //<Route path="/viewdetails" element={<ViewDetails/>} />
+               //<Route path="/trackdetails" element={<TrackOrder/>} />
+               //<Route path="/waiter/viewDetails/:id" element={<WaiterOrderDetails />} />
+              //<Route path='/generatebills' element={<GenerateBills/>} />
     //         <Route path="/kitchen/orders" element={<KitchenstaffDashboard />} />
     //         <Route path="/manager/role/view" element={<ViewRoleComponent />} />
     //         <Route path="/manager/role/add" element={<AddRoleComponent />} />

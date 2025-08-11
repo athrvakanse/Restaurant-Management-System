@@ -1,15 +1,18 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import WaiterSidebar from './WaiterSidebar';
 
-function WaiterDashboard() {
-  const user = useSelector((state) => state.loggedInUser.user);
+function WaiterDashboard({ children }) {
+
+
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center">Welcome to the Waiter Dashboard</h2>
-      <p className="text-center mt-3">
-        Hello, {user?.fname || 'Waiter'}! You are now logged in as waiter.
-      </p>
+    <div className="d-flex">
+      <WaiterSidebar/>
+      <div className="p-4" style={{ flex: 1 }}>
+       <Outlet/>
+      </div>
+      
     </div>
   );
 }

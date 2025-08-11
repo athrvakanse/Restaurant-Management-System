@@ -1,0 +1,69 @@
+.main-layout-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    /* This prevents cards from stretching to the height of the tallest card */
+    align-items: start;
+}
+
+.order-card {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    /* Sets an initial height for non-editing cards for a consistent look */
+    min-height: 250px;
+}
+
+.order-card.editing {
+    /* When a card is in editing mode, its height becomes dynamic based on its content */
+    min-height: auto;
+}
+
+.order-card .card-header {
+    padding: 10px 15px;
+    border-bottom: 1px solid #dee2e6;
+    background-color: #f1f3f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-card .card-body {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.order-card .card-footer {
+    padding: 15px;
+    border-top: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+}
+
+.no-orders-message,
+.loading,
+.error {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+/* Specific styles for edit mode elements to ensure consistency */
+.order-card .list-group-item {
+    font-size: 0.9rem;
+}
