@@ -23,15 +23,13 @@ public class RouteHelper {
 	    config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 	   // config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
 	    config.setAllowedHeaders(Arrays.asList("*"));
+	    config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
 	    config.setExposedHeaders(Arrays.asList("Authorization")); // Expose headers if needed
 	    
 	    source.registerCorsConfiguration("/**", config);
 
 	    return new CorsWebFilter(source);
 	}
-	
-	
-
 	@Bean
 	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
@@ -44,6 +42,9 @@ public class RouteHelper {
                 .route("restaurant_management_system_spring_boot",r->r.path("/api1/**")
 					.uri("http://localhost:8082"))
 					  //.uri("lb://restaurant_management_system_spring_boot"))
+                                .route("restaurant_management_system_spring_boot",r->r.path("/api1/**")
+					//.uri("http://localhost:8082"))
+					  .uri("lb://restaurant_management_system_spring_boot"))
                                 .route("ManagerService",r->r.path("/api3/**")
 					//.uri("http://localhost:8084"))
 					  .uri("lb://ManagerService"))
